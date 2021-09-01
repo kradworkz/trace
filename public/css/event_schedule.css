@@ -1,0 +1,58 @@
+body, html {
+    /*font-family: "Courier New", Courier, monospace;*/
+    font-family: "Arial";
+    font-size: 10px;
+    color: #0b0291;
+    height: 100%;
+    width: 100%;
+}
+
+.maintable {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 10px;
+}
+
+th {
+    /*border: 1px solid #0b0291;*/
+    border-collapse: collapse;
+    font-size: 30px !important;
+    font-weight: bold;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+td {
+    border: 1px solid #0b0291;
+    border-collapse: collapse;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+table {
+    font-size: 24px !important;
+    font-weight: bold;
+    color: #0b0291;    
+    table-layout: fixed;
+    width: 100%;
+}
+
+.calabarzon {
+    font-weight: bold !important;
+    font-size: 44px !important;
+    color: #0b0291 !important;
+}
+
+.dt {
+    font-weight: bold !important;
+    font-size: 36px !important;
+    color: #0b0291 !important;
+}
+
+th.uppertable {
+    border: 0px !important;
+    border-collapse: collapse !important;
+}

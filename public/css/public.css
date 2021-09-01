@@ -1,0 +1,257 @@
+.centering-container{
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.centered-content{
+  display: table-cell;  
+  /*margin: 0;
+  padding: 0;*/
+  width: 100%;
+  height: 100%;
+  text-align:center;
+  vertical-align: middle;
+  
+}
+
+.centering-horizontal {
+  float: none;
+  margin:0 auto 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+/*NEWLY ADDED*/
+div#outter-wrapper, div#page-wrapper{
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  min-height: 90%;
+  height: 90%;
+}
+
+div#background {
+  display: block;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -2000;
+}
+
+div#background img {
+  width: 99.999%;
+}
+
+.jumbotron{
+  color: #fff;
+  text-align: center;
+  /*background: #5C4283 !important;*/
+  background: url(../images/system/jumbobg.png);
+  padding: 10px;
+  margin: 0;
+}
+
+.jumbotron a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+  border: 0;
+  margin: 0;
+  padding:8px 0px 8px 0px;
+}
+
+.jumbotron .panel{
+  color:#404040;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+#nav{
+    padding-right: 20px !important;
+}
+
+.navbar-toggle{
+  border-color: #fff !important;
+}
+
+.navbar-brand{
+  padding:0px 0px 0px 2px;
+  margin:2px 0px 0px 0px;
+  border:0;
+}
+
+#footer-wrapper{
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  color: #ffffff;
+  background: #8259D5;
+  padding: 8px;
+  text-align: center;
+}
+
+footer, .footer{
+  position: fixed;
+  bottom: 0px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100% !important;
+  background: none;
+}
+
+.footer-text, .footer-text a{
+  color: #fff !important;
+}
+
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+} 
+
+.signin-form{
+  width: 240px;
+  margin: 0 auto 0 auto;
+}
+
+td.nowrap, th.nowrap, div.nowrap{
+  white-space:nowrap;
+}
+
+table.tablesorter td span.glyphicon{
+  color:#FFF;
+}
+
+table.tablesorter td h5{
+  margin-top: 0;
+}
+
+input[type="file"] {
+    padding-bottom: 34px;
+}
+
+span.full-width{
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+
+
+
+/* ***************************************************************************************************** */
+
+div.img_box{
+  display: inline-block;
+  width: 200px;
+  border: 1px solid #c0c0c0;
+  margin-bottom: 10px;
+  padding: 0;
+  background: #d0d0d0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+div.img_box:hover{
+  border: 1px solid #660000;
+  background: #660000;
+  color: #fff;
+}
+
+div.img_box_clipper{
+  display: block;
+  overflow: hidden;
+  height: 100px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+img.img_box_thumbnail{
+  display: block;
+  width: 100%;  
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+div.well-scroller{
+  height:190px;
+  overflow: auto;
+}
+
+/* **************************************************************************************************** */
+
+div.subnav{
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+#pace-target {
+  display: block;
+  height: 2px;
+  background: none;
+}
+
+.panel-title{
+  font-size: 2em;
+}
+
+.detail-name{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.control-label small{
+  color: #999;
+}
+
+/* **************************************************************************************************** */
+
+div#map-wrapper{
+  min-height: 100%;
+  height: 400px;
+  width: 100%;
+}
+
+div#map-wrapper #map{
+  width: 100%;
+  height: 100%;
+}
+
+div#map-location-picker{
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+}
+
+/* **************************************************************************************************** */
+
+div.vertifloat{
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+div.loginform{
+  display: inline-block;
+  width: 300px;
+  margin: 0 auto;
+}
