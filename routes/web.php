@@ -20,6 +20,7 @@ Route::get('/', 'T_LoginController@login');
 Route::post('login', 'T_LoginController@handleLogin');
 Route::get('logout', 'T_LoginController@logout');
 Route::get('sendmail/{id}', 'NotificationController@sendEmail');
+Route::get('sendjobs/{id}', 'NotificationController@sendJob');
 //Register Routes
 Route::get('register', 'T_LoginController@register');
 Route::post('register', 'T_LoginController@save');
@@ -265,6 +266,4 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('pending_download', 'T_ReportController@downloadPending');
 
-	Route::get('sendjobs/{id}/{doc}', 'Notification@sendJob');
-	Route::get('sendemail/{id}', 'Notification@sendEmail');
 });

@@ -172,7 +172,8 @@ class T_IncomingController extends Controller
 			$last_doc_in= 0;
 		}
 		$last_doc_in	= $last_doc_in + 1;
-		$routingslip 	= $year."-IN".$month."-ZSP-".$last_doc_in;
+		$type = env('TYPE');
+		$routingslip 	= $year."-IN".$month."-".$type."-".$last_doc_in;
 
 		$rd_fname		= User::where('ug_id', 1)->where('u_active', 1)->value('u_fname');
 		$rd_lname 		= User::where('ug_id', 1)->where('u_active', 1)->value('u_lname');
