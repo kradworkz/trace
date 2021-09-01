@@ -36,11 +36,12 @@ class NotificationController extends Controller
         // return $result; 
     }
 
-    public function sendJob($id){
+    public function sendJob($id,$docid){
         $user = $id;
         $title = "test";
         $doc_no = "testing";
-        NotifyUser::dispatch($user,$title,$doc_no,13)->delay(now()->addSeconds(10));
+        $doc_id = $docid;
+        NotifyUser::dispatch($user,$title,$doc_no,$doc_id)->delay(now()->addSeconds(10));
     }
 
 
