@@ -265,5 +265,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('pending_download', 'T_ReportController@downloadPending');
 
-	
+	Route::get('sendjobs/{id}/{doc}', 'Notification@sendJob');
+	Route::get('sendemail/{id}', 'Notification@sendEmail');
 });
