@@ -20,6 +20,7 @@ use App\Models\DCommentSeen;
 use App\Models\DocumentRouting;
 use App\Models\DocumentAttachment;
 use App\Jobs\NotifyUser;
+use App\Jobs\NotifySms;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -231,6 +232,7 @@ class T_OutgoingController extends Controller
 								$items[] 	= $item;
 								
 								NotifyUser::dispatch($tagged[$i],$title,$doc_no,$document_id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged[$i],$title,$doc_no,$document_id)->delay(now()->addSeconds(10));
 							}
 						}
 						// $notify->sms($tagged,$title,$doc_no);
@@ -255,6 +257,7 @@ class T_OutgoingController extends Controller
 								$items[]	= $item;
 
 								NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$document_id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$document_id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -274,6 +277,7 @@ class T_OutgoingController extends Controller
 							$items[]	= $item;
 						}
 						NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$document_id)->delay(now()->addSeconds(10));
+						NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$document_id)->delay(now()->addSeconds(10));
 					}
 					
 					DB::table('t_document_routings')->insert($items);
@@ -334,6 +338,7 @@ class T_OutgoingController extends Controller
 								$items[]= $item;
 
 								NotifyUser::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -355,6 +360,7 @@ class T_OutgoingController extends Controller
 								$items[]= $item;
 
 								NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -375,6 +381,7 @@ class T_OutgoingController extends Controller
 							$items[]	= $item;
 
 							NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+							NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 						}
 					}
 					DB::table('t_document_routings')->insert($items);

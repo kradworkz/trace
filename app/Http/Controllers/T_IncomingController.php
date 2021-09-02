@@ -24,6 +24,7 @@ use App\Models\UserGroupRight;
 use App\Models\DocumentRouting;
 use App\Models\DocumentAttachment;
 use App\Jobs\NotifyUser;
+use App\Jobs\NotifySms;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -366,6 +367,7 @@ class T_IncomingController extends Controller
 												'created_at'	=> Carbon\Carbon::now()];
 								$items[] 	= $item;
 								NotifyUser::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -386,6 +388,7 @@ class T_IncomingController extends Controller
 								$items[]	= $item;
 							
 								NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -402,6 +405,7 @@ class T_IncomingController extends Controller
 												'created_at' 	=> Carbon\Carbon::now()];
 								$items[]	= $item;
 								NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -548,6 +552,7 @@ class T_IncomingController extends Controller
 													'created_at'	=> Carbon\Carbon::now()];
 									$items[] 	= $item;
 									NotifyUser::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+									NotifySms::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 								}
 							}
 							DB::table('t_document_routings')->insert($items);
@@ -568,6 +573,7 @@ class T_IncomingController extends Controller
 													'created_at'	=> Carbon\Carbon::now()];
 									$items[]	= $item;
 									NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+									NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 								}
 							}
 							DB::table('t_document_routings')->insert($items);
@@ -586,6 +592,7 @@ class T_IncomingController extends Controller
 												'created_at' 	=> Carbon\Carbon::now()];
 								$items[]	= $item;
 								NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 							}
 						}
 						DB::table('t_document_routings')->insert($items);
@@ -694,6 +701,7 @@ class T_IncomingController extends Controller
 											'created_at'	=> Carbon\Carbon::now()];
 							$items[] 	= $item;
 							NotifyUser::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+							NotifySms::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 						}
 					}
 					DB::table('t_document_routings')->insert($items);
@@ -715,6 +723,7 @@ class T_IncomingController extends Controller
 											'created_at'	=> Carbon\Carbon::now()];
 							$items[]	= $item;
 							NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+							NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 						}
 					}
 					DB::table('t_document_routings')->insert($items);
@@ -733,6 +742,7 @@ class T_IncomingController extends Controller
 										'created_at' 	=> Carbon\Carbon::now()];
 						$items[]	= $item;
 						NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+						NotifySms::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
 					}
 				}
 				DB::table('t_document_routings')->insert($items);

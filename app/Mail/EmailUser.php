@@ -44,8 +44,6 @@ class EmailUser extends Mailable
             }   
         }
 
-        $mess->from("dost9ict@gmail.com","DOST IX - Trace");
-
         return $mess;
     }
 }
