@@ -52,7 +52,7 @@ class NotificationController extends Controller
         $name = "Ra-ouf Jumli";
         $message = "testing message";
         $title = "DOST TESTING MAIL";
-        $docid = 2;
+        $docid = 13;
         return Nu::email($email,$name,$message,$title,$docid);
 
         // return env('TYPE');

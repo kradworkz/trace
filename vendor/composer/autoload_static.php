@@ -431,6 +431,7 @@ class ComposerStaticInit15c5c3aa337042cac77075826ea0d6e9
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\T_AboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/T_AboutController.php',
         'App\\Http\\Controllers\\T_AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/T_AccountController.php',
         'App\\Http\\Controllers\\T_ActionController' => __DIR__ . '/../..' . '/app/Http/Controllers/T_ActionController.php',

@@ -540,11 +540,15 @@ class T_IncomingController extends Controller
 
 						if($tag_count > 0) {
 							for($i=0; $i<$tag_count; $i++) {
-								$item 		= [ 'd_id'			=> $id,
-												'u_id'			=> $tagged[$i],
-												'dr_completed'	=> $track,
-												'created_at'	=> Carbon\Carbon::now()];
-								$items[] 	= $item;
+								$count = DocumentRouting::where('d_id',$id)->where('u_id', $tagged[$i])->count();
+								if($count == 0){
+									$item 		= [ 'd_id'			=> $id,
+													'u_id'			=> $tagged[$i],
+													'dr_completed'	=> $track,
+													'created_at'	=> Carbon\Carbon::now()];
+									$items[] 	= $item;
+									NotifyUser::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								}
 							}
 							DB::table('t_document_routings')->insert($items);
 						}
@@ -556,11 +560,15 @@ class T_IncomingController extends Controller
 						$tagged_users 		= GroupMember::whereIn('group_id', $tagged)->whereNotIn('u_id', $orig)->get();
 						if(count($tagged_users) > 0) {
 							foreach($tagged_users as $tagged_user) {
-								$item 		= [ 'd_id'			=> $id,
-												'u_id'			=> $tagged_user['u_id'],
-												'dr_completed'	=> $track,
-												'created_at'	=> Carbon\Carbon::now()];
-								$items[]	= $item;
+								$count = DocumentRouting::where('d_id',$id)->where('u_id', $tagged_user['u_id'])->count();
+								if($count == 0){
+									$item 		= [ 'd_id'			=> $id,
+													'u_id'			=> $tagged_user['u_id'],
+													'dr_completed'	=> $track,
+													'created_at'	=> Carbon\Carbon::now()];
+									$items[]	= $item;
+									NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+								}
 							}
 							DB::table('t_document_routings')->insert($items);
 						}
@@ -570,11 +578,15 @@ class T_IncomingController extends Controller
 					$tagged_users 		= User::where('u_id', '!=', Auth::user()->u_id)->where('u_active', 1)->whereNotIn('u_id', $orig)->get();
 					if(count($tagged_users) > 0) {
 						foreach ( $tagged_users as $tagged_user ) {
-							$item 		= [ 'd_id'			=> $id,
-											'u_id'			=> $tagged_user['u_id'],
-											'dr_completed'	=> $track,
-											'created_at' 	=> Carbon\Carbon::now()];
-							$items[]	= $item;
+							$count = DocumentRouting::where('d_id',$id)->where('u_id', $tagged_user['u_id'])->count();
+							if($count == 0){	
+								$item 		= [ 'd_id'			=> $id,
+												'u_id'			=> $tagged_user['u_id'],
+												'dr_completed'	=> $track,
+												'created_at' 	=> Carbon\Carbon::now()];
+								$items[]	= $item;
+								NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+							}
 						}
 						DB::table('t_document_routings')->insert($items);
 					}
@@ -672,12 +684,17 @@ class T_IncomingController extends Controller
 
 				if($tag_count > 0) {
 					for($i=0; $i<$tag_count; $i++) {
-						$item 		= [ 'd_id'			=> $document_id,
-										'u_id'			=> $tagged[$i],
-										'dr_completed'	=> 1,
-										'dr_status'		=> 0,
-										'created_at'	=> Carbon\Carbon::now()];
-						$items[] 	= $item;
+						$count = DocumentRouting::where('d_id',$id)->where('u_id', $tagged[$i])->count();
+						
+						if($count == 0){
+							$item 		= [ 'd_id'			=> $document_id,
+											'u_id'			=> $tagged[$i],
+											'dr_completed'	=> 1,
+											'dr_status'		=> 0,
+											'created_at'	=> Carbon\Carbon::now()];
+							$items[] 	= $item;
+							NotifyUser::dispatch($tagged[$i],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+						}
 					}
 					DB::table('t_document_routings')->insert($items);
 				}
@@ -689,12 +706,16 @@ class T_IncomingController extends Controller
 				$tags 				= GroupMember::whereIn('group_id', $tagged)->pluck('u_id');
 				if(count($tagged_users) > 0) {
 					foreach($tagged_users as $tagged_user) {
-						$item 		= [ 'd_id'			=> $document_id,
-										'u_id'			=> $tagged_user['u_id'],
-										'dr_completed'	=> 1,
-										'dr_status'		=> 0,
-										'created_at'	=> Carbon\Carbon::now()];
-						$items[]	= $item;
+						$count = DocumentRouting::where('d_id',$id)->where('u_id', $tagged_user['u_id'])->count();
+						if($count == 0){
+							$item 		= [ 'd_id'			=> $document_id,
+											'u_id'			=> $tagged_user['u_id'],
+											'dr_completed'	=> 1,
+											'dr_status'		=> 0,
+											'created_at'	=> Carbon\Carbon::now()];
+							$items[]	= $item;
+							NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+						}
 					}
 					DB::table('t_document_routings')->insert($items);
 				}
@@ -703,12 +724,16 @@ class T_IncomingController extends Controller
 			$tagged_users 		= User::where('u_id', '!=', Auth::user()->u_id)->where('u_active', 1)->orderBy('u_id', 'asc')->get();
 			if(count($tagged_users) > 0) {
 				foreach ( $tagged_users as $tagged_user ) {
-					$item 		= [ 'd_id'			=> $document_id,
-									'u_id'			=> $tagged_user['u_id'],
-									'dr_completed'	=> 1,
-									'dr_status'		=> 0,
-									'created_at' 	=> Carbon\Carbon::now()];
-					$items[]	= $item;
+					$count = DocumentRouting::where('d_id',$id)->where('u_id', $tagged_user['u_id'])->count();
+					if($count == 0){
+						$item 		= [ 'd_id'			=> $document_id,
+										'u_id'			=> $tagged_user['u_id'],
+										'dr_completed'	=> 1,
+										'dr_status'		=> 0,
+										'created_at' 	=> Carbon\Carbon::now()];
+						$items[]	= $item;
+						NotifyUser::dispatch($tagged_user['u_id'],$title,$doc_no,$id)->delay(now()->addSeconds(10));
+					}
 				}
 				DB::table('t_document_routings')->insert($items);
 			}
