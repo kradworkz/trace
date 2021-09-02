@@ -55,8 +55,6 @@ class NotifySms implements ShouldQueue
                 
             }
         }
-
         return true;
-        
     }
 }

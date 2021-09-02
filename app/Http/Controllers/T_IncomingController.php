@@ -531,6 +531,9 @@ class T_IncomingController extends Controller
 				}
 
 				$tracked 				= Document::where('d_id', $id)->value('d_istrack');
+				$title 				= Document::where('d_id', $id)->value('d_subject');
+				$doc_no 				= Document::where('d_id', $id)->value('d_routingslip');
+
 				if($tracked == 0) {
 					$track = 1;
 				} else {
@@ -659,6 +662,9 @@ class T_IncomingController extends Controller
 		$out->d_group_encoded 		= Auth::user()->group_id;
 		$out->created_at 			= Carbon\Carbon::now();			
 		$out->save();
+
+		$title 				= Input::get('d_subject');
+		$doc_no 				= Input::get('d_routingslip');
 
 		$files 						= Request::file('d_file');			
         $document_id 				= Document::orderBy('d_id', 'desc')->value('d_id');

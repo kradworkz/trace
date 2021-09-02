@@ -10,14 +10,9 @@ class NotifyUser {
 
     public static function sms($users,$title,$doc) {
 
-       
-
     }
 
     public static function email($email,$name,$mess,$title,$id) {
-
-     
         Mail::to($email)->send(new EmailUser($name,$mess,$title,$id));
-
     }
 }

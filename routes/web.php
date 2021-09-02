@@ -19,8 +19,6 @@ Route::get('maintenance', 'T_LoginController@maintenance');
 Route::get('/', 'T_LoginController@login');
 Route::post('login', 'T_LoginController@handleLogin');
 Route::get('logout', 'T_LoginController@logout');
-Route::get('sendmail/{id}', 'NotificationController@sendEmail');
-Route::get('sendjobs/{id}/{doc}', 'NotificationController@sendJob');
 //Register Routes
 Route::get('register', 'T_LoginController@register');
 Route::post('register', 'T_LoginController@save');
