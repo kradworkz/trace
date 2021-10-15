@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Action;
 use App\Services\NotifyUser as Nu;
 use App\Mail\EmailUser;
 use App\Models\User;

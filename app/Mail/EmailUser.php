@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\Action;
+use App\Models\Document;
 use App\Models\DocumentAttachment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -32,10 +34,33 @@ class EmailUser extends Mailable
      * @return $this
      */
     public function build()
-    {
-        ($this->id != null) ? $files = DocumentAttachment::where('d_id',$this->id)->get() : '';
+    {   
+        $link = Document::where('d_id', $this->id)->value('d_status');
         
-        $mess= $this->view('email.demo')->with('name',$this->name)->with('body',$this->message);
+        $actions = Document::where('d_id', $this->id)->value('d_actions');
+        if($actions != null){
+            $acts = Action::select('a_action')->whereIn('a_id',json_decode($actions))->get();
+            $val = "";
+            $count = count($acts);
+            $c = $count - 1;
+            if($count >0){
+                foreach($acts as $key=>$act){
+                    $val .=  $act['a_action']; 
+                    ($count>1) ? ($key != $c) ? $val .= ', ' : '' : '';
+                }
+            }else{
+                $val = '';
+            }
+        }else{
+            $val = '';
+        }
+
+
+        $link = ($link == "Outgoing") ? 'outgoing/view/' : 'incoming/view/' ;
+
+        ($this->id != null) ? $files = DocumentAttachment::where('d_id',$this->id)->get() : '';
+
+        $mess= $this->view('email.demo')->with('name',$this->name)->with('body',$this->message)->with('link',$link)->with('val',$val)->with('id',$this->id);
         $mess->subject($this->title);
 
         if($this->id != null){

@@ -174,6 +174,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('incoming/remove-tag/{id}', 'T_IncomingController@removeTag');
 	Route::get('incoming/attachment_delete/{id}', 'T_IncomingController@removeAttachment');
 	Route::get('incoming/delete/{id}', 'T_IncomingController@deleteDocument');
+	Route::get('incoming/test', 'T_IncomingController@test');
 
 	//Incoming Document Routes - Normal
 	Route::get('incoming', 'T_IncomingController@index');

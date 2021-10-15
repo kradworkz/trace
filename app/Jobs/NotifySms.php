@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Action;
 use App\Models\User;
 use App\Models\Document;
 use Illuminate\Bus\Queueable;
@@ -29,11 +30,30 @@ class NotifySms implements ShouldQueue
 
         if($this->id != null){
             $user = User::where('u_id',$this->id)->first();
+            $actions = Document::where('d_id', $this->doc_id)->value('d_actions');
+
+            if($actions != null){
+                $acts = Action::select('a_action')->whereIn('a_id',json_decode($actions))->get();
+                $val = "";
+                $count = count($acts);
+                $c = $count - 1;
+                if($count >0){
+                    foreach($acts as $key=>$act){
+                        $val .=  $act['a_action']; 
+                        ($count>1) ? ($key != $c) ? $val .= ', ' : '' : '';
+                    }
+                }else{
+                    $val = '';
+                }
+            }else{
+                $val = '';
+            }
+
             if(!empty($user)){
                 $no = $user->u_mobile;
                 $name = $user->u_fname.' '.$user->u_mname.', '.$user->u_lname;
                 $email = $user->u_email;
-                $text = "Hi ".$name.", You have been tagged to the document with Routing Slip : ".$this->doc." and a subject : ".$this->title.".";
+                $text = "Hi ".$name.", You have been tagged to the document with Routing Slip : ".$this->doc." and a subject : ".$this->title.". ".$val;
                 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, 'https://api.dost9.ph/sms/messages');

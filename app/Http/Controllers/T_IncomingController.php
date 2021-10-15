@@ -830,4 +830,22 @@ class T_IncomingController extends Controller
     	}
 		return view('incoming.encoded', compact('search', 'option', 'documents', 'reportSearch'));
 	}
+
+	public function test(){
+		$actions = Document::where('d_id', 3)->value('d_actions');
+		
+		if($actions != null){
+			$acts = Action::select('a_action')->whereIn('a_id',json_decode($actions))->get();
+			$val = "";
+			$count = count($acts);
+			$c = $count - 1;
+			foreach($acts as $key=>$act){
+				$val .=  $act['a_action']; 
+				($count>1) ? ($key != $c) ? $val .= ', ' : '' : '';
+			}
+			return $val;
+		}else{
+			return $val = '';
+		}
+	}
 }
